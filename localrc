@@ -1,0 +1,12 @@
+# Local, non-shared configurations
+# add configuration that is specific to this machine/environmnet
+# and should not be shared across environments
+
+# export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/libexec/git-core
+export SW_CODE=~/code/spiceworks
+
+if [ -f $HOME/localized/aliases ]; then
+  source $HOME/localized/aliases;
+else
+  echo 'localized dir missing, no localizations here.';
+fi

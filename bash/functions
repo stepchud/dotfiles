@@ -1,0 +1,53 @@
+# changing directory to project code
+function c { cd ~/code/$1; }
+
+function hgrep {
+  history | grep "$1"
+}
+
+# find every occurence of the given string in relevant code directories
+function cgrep {
+  local usage="usage: cgrep [grep options] <string_to_grep_for> (surrounded by quotes for multi-word match)"
+  if [ $# -lt 1 -o $# -gt 2 ]; then
+    echo "$usage" && return 1
+  fi
+
+  local grep_opts="-Ern"
+  if [ $# -eq 2 ]; then
+    local grep_opts="$grep_opts $1"
+    local srch="$2"
+  else
+    local srch="$1"
+  fi
+  if [ -z "$srch" ]; then
+    echo "$usage" && return 1
+  else
+    echo "looking for '$srch' with grep options '$grep_opts'..."
+    pushd ~/code/spiceworks > /dev/null
+    find . -type dir -depth 1 -not -name 'tmp' -and -not -name 'data' -and -not -name 'log' -and -not -name '.git' -exec grep $grep_opts "$srch" {} \;
+    popd > /dev/null
+  fi
+}
+
+# find differences within a file giving start and end lines for both sections
+function diff_sections {
+  if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ] || [ -z "$5" ]; then
+    echo "usage: diff_sections file_name sec1_begin sec1_end sec2_begin sec2_end"
+  else
+    local fname=`basename $1`
+    local tempfile=`mktemp -t $fname`
+    head -$3 $1 | tail +$2 > $tempfile && head -$5 $1 | tail +$4 | diff -u $tempfile - 
+    rm $tempfile
+  fi
+}
+
+# kill the server rake task more easily
+function killserver {
+  ps ux | grep server:start | grep -v grep | awk '{print $2}' | xargs kill
+  local status=$?
+  if [ $status -ne 0 ]
+  then
+    echo SIGTERM failed to kill, resorting to SIGKILL
+    ps ux | grep server:start | grep -v grep | awk '{print $2}' | xargs kill -9
+  fi
+}
