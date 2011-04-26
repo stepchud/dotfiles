@@ -1,33 +1,68 @@
 # cd
 alias ..='cd ..'
+alias cs='c spiceworks'
+alias cdb='c spiceworks-dbs'
+alias cf='c spiceworks/base/finder'
+alias ce='c exchange_mailer'
+alias cam='c rails/actionmailer'
+alias cm='c mail'
+
+# less should support native colorization by default if possible
+alias less='less -R'
 
 # ls
 alias ls="ls -F"
-alias l="ls -lAh"
-alias ll="ls -l"
 alias la='ls -A'
+alias ll='pwd; ls -AlFh'
+alias lt='ll -tr'
+alias l='ll'
+alias dir='ll'
+
+alias cls='clear'
+
+# gem
+alias gi='gem install --ignore-dependencies --no-rdoc --no-ri --format-executable'
 
 # git
-alias gl='git pull'
-alias gp='git push'
 alias gd='git diff'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gco='git checkout'
 alias gb='git branch'
 alias gs='git status'
+alias s='git status || svn status'
+alias spull='swgit pullall'
+alias spush='swgit pushall'
+alias switch='swgit switch' # must provide branch name arg
+alias sclean='swgit clean'
+alias rtest_tickets='rtest test/unit/comment_* test/unit/ticket_* test/functional/portal_* test/functional/tickets_* test/integration/ticket_email_event_test.rb'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
 
 # rails
-alias sc='script/console'
-alias ss='script/server'
-alias sg='script/generate'
+alias ss='cs && rake server:start'
+alias ssc='cs && rake server:start:cache'
+alias ssm='cs && rake server:start:mongrel'
+alias ssmc='cs && rake server:start:mongrel:cache'
+alias sc='cs && script/console'
+alias sg='cs && script/generate'
 alias a='autotest -rails'
-alias tlog='tail -f log/development.log'
-alias scaffold='script/generate nifty_scaffold'
+alias tlog="tail -50f $SW_CODE/log/development.log"
+# alias scaffold='script/generate nifty_scaffold'
 alias migrate='rake db:migrate db:test:clone'
 alias rst='touch tmp/restart.txt'
 
 # commands starting with % for pasting from web
 alias %=' '
+
+# grep
+alias rgrep='grep -rn'
+alias pgrep='ps aux | grep -v grep | grep'
+
+# ruby versions
+alias ru18='rvm use ruby-1.8.6@spiceworks'
+alias ru19='rvm use ruby-1.9.1@spiceworks'
+alias rvp='rvm-prompt'
+
+# exchange_mailer helper
+alias reinstall_exchange_mailer='pushd ~/code/exchange_mailer && rake repackage && gi pkg/exchange_mailer-0.4.0.gem && popd'

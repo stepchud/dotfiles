@@ -1,15 +1,42 @@
-. ~/.zsh/aliases
+# cd
+alias ..='cd ..'
+# less should support native colorization by default if possible
+alias less='less -R'
 
-# changing directory to code project
-function c { cd ~/code/$1; }
+# ls
+alias ls="ls -F"
+alias la='ls -A'
+alias ll='pwd; ls -AlFh'
+alias lt='ll -tr'
+alias l='ll'
+alias dir='ll'
 
-# alternative to "rails" command to use templates
-function railsapp {
-  template=$1
-  appname=$2
-  shift 2
-  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
-}
+alias cls='clear'
+
+# gem
+alias gi='gem install --ignore-dependencies --no-rdoc --no-ri --format-executable'
+
+# git
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gb='git branch'
+alias gs='git status'
+alias s='git status || svn status'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias migrate='rake db:migrate db:test:clone'
+alias rst='touch tmp/restart.txt'
+
+# commands starting with % for pasting from web
+alias %=' '
+
+# grep
+alias rgrep='grep -rn'
+alias pgrep='ps aux | grep -v grep | grep'
+
+# rvm
+alias rvp='rvm-prompt'
 
 # misc
 alias reload='. ~/.bash_profile'
