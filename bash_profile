@@ -19,11 +19,16 @@ then
   source ~/.bashrc
 fi
 
-# use .local_profile for settings specific to one system
-if [ -f ~/.local_profile ]
-then
-  echo localizing...
-  source ~/.local_profile
+# Local, non-shared configurations
+# add configuration that is specific to this machine/environmnet
+# and should not be shared across environments
+# for settings specific to one system (e.g. mac vs. linux differences)
+
+if [ -e $HOME/localized/ ]; then
+  echo 'localizing...'
+  for file in $HOME/localized/*; do source $file; done
+else
+  echo 'localizations missing.'
 fi
 
 # setup ruby version manager
