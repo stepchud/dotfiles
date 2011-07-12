@@ -2,5 +2,5 @@
 . ~/.zsh/aliases
 . ~/.zsh/completion
 
-# use .localrc for settings specific to one system
-[[ -f ~/.localrc ]] && . ~/.localrc
+# use .local_profile for settings specific to one system
+[[ -f ~/.local_profile ]] && . ~/.local_profile

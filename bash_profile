@@ -19,7 +19,7 @@ then
   source ~/.bashrc
 fi
 
-# use .localrc for settings specific to one system
+# use .local_profile for settings specific to one system
 if [ -f ~/.local_profile ]
 then
   echo localizing...

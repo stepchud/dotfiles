@@ -4,7 +4,7 @@
 
 export SW_CODE=~/code/spiceworks
 
-if [ -d $HOME/localized/ ]; then
+if [ -e $HOME/localized/ ]; then
   for file in $HOME/localized/*; do source $HOME/localized/aliases; done
 else
   echo 'localizations missing.';
