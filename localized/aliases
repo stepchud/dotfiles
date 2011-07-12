@@ -1,0 +1,32 @@
+# cd
+alias cs='c spiceworks'
+alias cdb='c spiceworks-dbs'
+alias cf='c spiceworks/base/finder'
+alias ce='c exchange_mailer'
+alias cam='c rails/actionmailer'
+alias cm='c mail'
+
+# git
+# no longer needed b/c external finder collapsed - maybe get rid of swgit
+# alias spull='swgit pullall'
+# alias spush='swgit pushall'
+# alias switch='swgit switch' # must provide branch name arg
+# alias sclean='swgit clean'
+alias rtest_tickets='rtest test/unit/comment_* test/unit/ticket_* test/functional/portal_* test/functional/tickets_* test/integration/ticket_email_event_test.rb'
+
+# rails
+alias ss='cs && rake server:start'
+alias ssc='cs && rake server:start:cache'
+alias ssm='cs && rake server:start:mongrel'
+alias ssmc='cs && rake server:start:mongrel:cache'
+alias sc='cs && script/console'
+alias sg='cs && script/generate'
+# alias a='autotest -rails'
+alias tlog="tail -50f $SW_CODE/log/development.log"
+
+# rvm
+alias ru18='rvm use ruby-1.8.6@spiceworks'
+alias ru19='rvm use ruby-1.9.1@spiceworks'
+
+# exchange_mailer helper
+alias reinstall_exchange_mailer='pushd ~/code/exchange_mailer && rake repackage && gi pkg/exchange_mailer-0.4.0.gem && popd'

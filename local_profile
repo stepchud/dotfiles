@@ -1,0 +1,14 @@
+# Local, non-shared configurations
+# add configuration that is specific to this machine/environmnet
+# and should not be shared across environments
+
+export SW_CODE=~/code/spiceworks
+
+if [ -d $HOME/localized/ ]; then
+  for file in $HOME/localized/*; do source $HOME/localized/aliases; done
+else
+  echo 'localizations missing.';
+fi
+
+# uncomment for Fink to work
+# Test -r /sw/bin/init.sh && . /sw/bin/init.sh

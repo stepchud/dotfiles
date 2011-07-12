@@ -33,7 +33,7 @@ task :install do
 end
 
 def replace_file(file)
-  system %Q{rm -rf "$HOME/.#{file.sub('.erb', '')}"}
+  system %Q{mv "$HOME/.#{file}" "$HOME/.#{file}.backup_#{Time.now.to_s.split[0,2].join('@')}}
   link_file(file)
 end
 

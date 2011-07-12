@@ -4,7 +4,7 @@ alias ..='cd ..'
 alias less='less -R'
 
 # ls
-alias ls="ls -F"
+alias ls="ls -FG" # trailing-slash dirs + colorized output
 alias la='ls -A'
 alias ll='pwd; ls -AlFh'
 alias lt='ll -tr'
@@ -26,7 +26,7 @@ alias gs='git status'
 alias s='git status || svn status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias migrate='rake db:migrate db:test:clone'
-alias rst='touch tmp/restart.txt'
+alias restart_passenger='touch tmp/restart.txt'
 
 # commands starting with % for pasting from web
 alias %=' '
@@ -40,3 +40,5 @@ alias rvp='rvm-prompt'
 
 # misc
 alias reload='. ~/.bash_profile'
+alias special_regexp_chars="echo '. | ( ) [ ] { } + \ ^ $ * ?'"
+# alias luser="echo 'no, you'\''re not'"
