@@ -45,8 +45,8 @@ task :install do
   @file, @link = File.join(install_from,'localized'), File.join(ENV['HOME'], 'localized')
   system %Q{git clone git@github.com:stepchud/localized.git}
   link_file
-  puts "For localized environment, go to ~/.dotfiles/localized and checkout the branch corresponding to your environment."
   puts "Installation complete."
+  puts "Now you should go to ~/.dotfiles/localized and checkout the branch corresponding to your machine env."
 end
 
 def replace_file
