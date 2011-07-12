@@ -52,4 +52,9 @@ function killserver {
   fi
 }
 
-[ -f "$HOME/localized/functions" ] && source "$HOME/localized/functions"
+function __localized_to {
+  pushd $HOME/.dotfiles/localized > /dev/null
+  local l=$(git symbolic-ref HEAD 2>/dev/null)
+  export LOCAL_ENV=${l##refs/heads/}
+  popd > /dev/null
+}

@@ -25,8 +25,9 @@ fi
 # for settings specific to one system (e.g. mac vs. linux differences)
 
 if [ -e $HOME/localized/ ]; then
-  echo 'localizing...'
   for file in $HOME/localized/*; do source $file; done
+  __localized_to
+  echo "localized to $LOCAL_ENV"
 else
   echo 'localizations missing.'
 fi
