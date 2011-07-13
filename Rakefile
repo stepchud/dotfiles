@@ -55,13 +55,15 @@ task :install do
   end
 
   @file, @link = File.join(install_from,'localized'), File.join(ENV['HOME'], 'localized')
-  unless File.exist?(@file)
-    `pushd #{install_from} && git clone git@github.com:stepchud/localized.git && popd`
+  if File.exist?(@file)
+    puts "'localized' dir exists! can't get the repo."
+  else
+    `pushd #{install_from} && git clone git://github.com/stepchud/localized.git && popd`
     link_file unless File.exist?(@link)
   end
 
   puts "Installation complete."
-  puts "Now you should go to ~/.dotfiles/localized and checkout the branch corresponding to your machine env."
+  puts "Now you can cd to #{@file} and checkout the branch corresponding to your machine env."
 end
 
 def backup_file
