@@ -1,3 +1,5 @@
+# alias
+alias alais='alias'
 # cd
 alias ..='cd ..'
 # less should support native colorization by default if possible
