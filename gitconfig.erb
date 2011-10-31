@@ -4,12 +4,14 @@
 [alias]
 	co = checkout
   cp = cherry-pick
-  spull = svn rebase
-  up = svn rebase
-  spush = svn dcommit
+  svnpull = svn rebase
+  up = pull
+  svnpush = svn dcommit
   # common mis-spellings
   dif = diff
   lg = log
+  morelog = log --format=medium
+  mlog = morelog
 [color]
 	diff = auto
 	status = auto
@@ -18,7 +20,7 @@
 [core]
 	excludesfile = <%= ENV['HOME'] %>/.gitignore
 	editor = vi
-	autocrlf = input
+	autocrlf = false
 [apply]
 	whitespace = nowarn
 [format]
@@ -26,3 +28,5 @@
 [github]
 	user = <%= print("GitHub Username: "); STDOUT.flush; STDIN.gets.chomp %>
 	token = <%= print("GitHub API Token: "); STDOUT.flush; STDIN.gets.chomp %>
+[pretty]
+  githubmine = %h by %an about %cr%n%B

@@ -55,9 +55,16 @@ set expandtab
 
 " File-type highlighting and configuration.
 syntax enable
-filetype on
-filetype plugin on
-filetype indent on
+if has("autocmd")
+  filetype on
+  filetype plugin on
+  filetype indent on
+  " Restore cursor pos
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+endif
 
 " highlight search terms
 set hlsearch

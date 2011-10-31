@@ -4,6 +4,7 @@
 begin
   require 'rubygems'
   require 'wirble'
+  require 'interactive_editor'
   Wirble.init
   Wirble.colorize
 rescue LoadError => err

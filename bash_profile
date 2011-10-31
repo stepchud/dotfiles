@@ -32,15 +32,15 @@ else
   echo 'localizations missing.'
 fi
 
-# setup ruby version manager
-if [[ -s /usr/local/rvm/scripts/rvm ]] ; then source /usr/local/rvm/scripts/rvm ; fi
-
-# rvm --default 1.9.2-rc2
-
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export PS1='[\[\033[0;31m\]\u@\h:\[\033[0;33m\]\W\[\033[1;34m\]$(__git_ps1 " (%s)")\[\033[0m\]]\$ '
 # export PATH=~/bin:~/local/node/bin:/opt/local/bin:/opt/local/sbin:$PATH
-export PATH=~/bin:$PATH
+export PATH=~/bin:/usr/local/git/bin:$PATH:/opt/local/lib/postgresql84/bin
 export CDPATH=.:~:~/code:~/Documents:/usr/local/rvm/gems/ruby-1.9.2-p0\@spiceworks/gems
+
+# setup ruby version manager
+if [[ -s /usr/local/rvm/scripts/rvm ]] ; then source /usr/local/rvm/scripts/rvm ; fi
+
+# rvm --default 1.9.2-rc2
