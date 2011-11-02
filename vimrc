@@ -79,6 +79,7 @@ set visualbell
 
 " customize some colors
 hi Comment term=bold ctermfg=yellow ctermbg=blue
+hi Pmenu ctermbg=13 guibg=Magenta
 
 " fuzzyfinder mappings
 let g:fuf_enumeratingLimit = 70

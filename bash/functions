@@ -23,7 +23,7 @@ function cgrep {
     echo "$usage" && return 1
   else
     echo "looking for '$srch' with grep options '$grep_opts'..."
-    pushd ~/code/spiceworks > /dev/null
+    pushd ~/code/desktop > /dev/null
     find . -type dir -depth 1 -not -name 'public' -and -not -name 'tmp' -and -not -name '*data' -and -not -name 'log' -and -not -name '.git' -exec grep $grep_opts "$srch" {} \;
     find ./public -type dir -depth 1 -not -name 'packages' -exec grep $grep_opts "$srch" {} \;
     popd > /dev/null
