@@ -44,3 +44,4 @@ alias rvp='rvm-prompt'
 alias reload='. ~/.bash_profile'
 alias special_regexp_chars="echo '. | ( ) [ ] { } + \ ^ $ * ?'"
 # alias luser="echo 'no, you'\''re not'"
+alias update_submodules="git pull --recurse-submodules && git submodule update"
