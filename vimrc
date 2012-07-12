@@ -2,12 +2,19 @@
 " no vi compatibility
 set nocompatible
 
+" prevent some modelines sec exploits
+set modelines=0
+
 " manage buffers correctly
 set hidden
 
 " remap ` to '
 nnoremap ' `
 nnoremap ` '
+
+" set very magic searching (more natural)
+nnoremap / /\v
+vnoremap / /\v
 
 " map leader to <SPACE>
 let mapleader = " "
@@ -20,11 +27,14 @@ runtime macros/matchit.vim
 
 " useful file/cmd completion
 set wildmenu
-set wildmode=list,longest
+set wildmode=list:longest
 
 " case-smart searching
 set ignorecase
 set smartcase
+
+" auto-sub all matches on the line ("g")
+set gdefault
 
 " terminal title
 set title
@@ -36,22 +46,44 @@ set scrolloff=3
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" get rid of that Gd F1 key
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" map ; to :
+nnoremap ; :
+
 " faster viewport scrolling
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 " limited line-numbers
 set ruler
+set relativenumber
 
 " Intuitive backspacing in insert mode
 set backspace=indent,eol,start
 
 " tabs are 2 spaces
 set tabstop=2
-set smarttab
+set softtabstop=2
 set shiftwidth=2
+set smarttab
 set autoindent
 set expandtab
+
+" show mode in Insert/Replace/Visual
+set showmode
+
+" always show status line
+set laststatus=2
+
+" relative line nos?
+set relativenumber
+
+" keep an undofile across sessions
+set undofile
 
 " File-type highlighting and configuration.
 syntax enable
@@ -64,11 +96,20 @@ if has("autocmd")
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
         \ endif
+  " auto-save on focus lost
+  autocmd FocusLost * :wa
 endif
 
-" highlight search terms
+" highlight search terms, matching brackets
 set hlsearch
 set incsearch
+set showmatch
+" turnoff highlighting
+nnoremap <leader><space> :nohl<cr>
+
+" tab jumps to matching bracket
+nnoremap <tab> %
+vnoremap <tab> %
 
 " chg shortmess (help :shortmess for details)
 set shortmess=atI
@@ -77,15 +118,18 @@ set shortmess=atI
 set errorbells
 set visualbell
 
+" faster redrawing
+set ttyfast
+
 " customize some colors
 hi Comment term=bold ctermfg=yellow ctermbg=blue
 hi Pmenu ctermbg=13 guibg=Magenta
 
-" fuzzyfinder mappings
-let g:fuf_enumeratingLimit = 70
+" Command-T mappings
+let g:CommandTMaxHeight = 30
 
-map <leader>f :FufFile<CR>
-map <leader>b :FufBuffer<CR>
+map <leader>f :CommandT<CR>
+map <leader>b :CommandTBuffer<CR>
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 function! CleverTab()

@@ -3,12 +3,12 @@
 # load up and initialize Wirble with some nice defaults
 begin
   require 'rubygems'
-  require 'wirble'
   require 'interactive_editor'
+  require 'wirble'
   Wirble.init
   Wirble.colorize
 rescue LoadError => err
-  warn "Couldn't load Wirble: #{err}"
+  warn "Couldn't load gem: #{err}"
 end
 
 class Object

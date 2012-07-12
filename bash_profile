@@ -42,3 +42,4 @@ export PATH=~/bin:/usr/local/git/bin:$PATH
 if [[ -s /usr/local/rvm/scripts/rvm ]] ; then source /usr/local/rvm/scripts/rvm ; fi
 
 export RUBYLIB=".:test:lib:$RUBYLIB"
+export JRUBY_OPTS="--1.9 -J-XX:PermSize=512m -J-XX:MaxPermSize=768m -J-server -J-Xmx2048m -J-Xms1024m -J-Djruby.reflection=true -J-Djruby.compile.mode=OFF -J-Djruby.debug.fullTrace=true"

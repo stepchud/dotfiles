@@ -29,6 +29,7 @@ alias s='if [ -d .git ]; then git status; else svn info && svn status; fi'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias migrate='rake db:migrate db:test:clone'
 alias restart_passenger='touch tmp/restart.txt'
+alias be='bundle exec'
 
 # commands starting with % for pasting from web
 alias %=' '
