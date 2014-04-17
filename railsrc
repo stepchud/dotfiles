@@ -4,6 +4,7 @@ begin
   require 'hirb' # sudo gem install cldwalker-hirb --source http://gems.github.com
   Hirb.enable
 rescue LoadError
+  puts "hirb LoadError"
 end
 
 def change_log(stream)

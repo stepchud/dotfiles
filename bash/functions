@@ -5,6 +5,12 @@ function hgrep {
   history | grep "$1"
 }
 
+function rgrep {
+  local srch="$1"
+  echo "looking for $srch in ."
+  grep -rn "$srch" .
+}
+
 # find every occurence of the given string in relevant code directories
 function cgrep {
   local usage="usage: cgrep [grep options] <string_to_grep_for> (surrounded by quotes for multi-word match)"
@@ -35,7 +41,7 @@ function diff_sections {
   else
     local fname=`basename $1`
     local tempfile=`mktemp -t $fname`
-    head -$3 $1 | tail +$2 > $tempfile && head -$5 $1 | tail +$4 | diff -u $tempfile - 
+    head -$3 $1 | tail +$2 > $tempfile && head -$5 $1 | tail +$4 | diff -u $tempfile -
     rm $tempfile
   fi
 }
@@ -56,4 +62,18 @@ function __localized_to {
   local l=$(git symbolic-ref HEAD 2>/dev/null)
   export LOCAL_ENV=${l##refs/heads/}
   popd > /dev/null
+}
+
+function cleanup_undos {
+  find . -name ".*.un~" -exec rm {} +
+}
+
+function gemdir {
+  if [[ -z "$1" ]] ; then
+    echo "gemdir expects a parameter, which should be a valid RVM Ruby selector"
+  else
+    rvm "$1"
+    cd $(rvm gemdir)
+    pwd
+  fi
 }

@@ -1,15 +1,18 @@
 #!/usr/bin/ruby
 
+# enable readline for jruby
+IRB.conf[:USE_READLINE] = true
+
 # load up and initialize Wirble with some nice defaults
-begin
-  require 'rubygems'
-  require 'interactive_editor'
-  require 'wirble'
-  Wirble.init
-  Wirble.colorize
-rescue LoadError => err
-  warn "Couldn't load gem: #{err}"
-end
+# begin
+#   require 'rubygems'
+#   # require 'interactive_editor'
+#   # require 'wirble'
+#   # Wirble.init
+#   # Wirble.colorize
+# rescue LoadError => err
+#   warn "Couldn't load: #{err}"
+# end
 
 class Object
   # list methods which aren't in superclass
@@ -17,7 +20,7 @@ class Object
     return Object.instance_methods.sort if obj.instance_of?(Object) rescue nil
     (obj.methods - obj.class.superclass.instance_methods).sort
   end
-  
+
   # print documentation
   #
   #   ri 'Array#pop'

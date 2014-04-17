@@ -100,6 +100,11 @@ if has("autocmd")
   autocmd FocusLost * :wa
 endif
 
+  " vim starts too slow in jruby
+if !empty(matchstr($MY_RUBY_HOME, 'jruby'))
+  let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/rubysite_ruby/*'),"\n"),',')
+endif
+
 " highlight search terms, matching brackets
 set hlsearch
 set incsearch
@@ -127,10 +132,13 @@ hi Pmenu ctermbg=13 guibg=Magenta
 
 " Command-T mappings
 let g:CommandTMaxHeight = 30
+let g:CommandTMaxFiles = 20000
 
 map <leader>f :CommandT<CR>
 map <leader>b :CommandTBuffer<CR>
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+map <C-N> :cnext<CR>
+map <C-P> :cprev<CR>
 
 function! CleverTab()
    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'

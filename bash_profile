@@ -8,6 +8,7 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 stty stop ""
 
+# dotfiles additions
 source ~/.bash/aliases
 source ~/.bash/completions
 source ~/.bash/functions
@@ -36,10 +37,11 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export PS1='[\[\033[0;31m\]\u@\h:\[\033[0;33m\]\W\[\033[1;34m\]$(__git_ps1 " (%s)")\[\033[0m\]]\$ '
-export PATH=~/bin:/usr/local/git/bin:$PATH
+export PATH=~/bin:/usr/local/sbin:$PATH:/usr/local/rvm/bin
 
 # setup ruby version manager
-if [[ -s /usr/local/rvm/scripts/rvm ]] ; then source /usr/local/rvm/scripts/rvm ; fi
 
 export RUBYLIB=".:test:lib:$RUBYLIB"
 export JRUBY_OPTS="--1.9 -J-XX:PermSize=512m -J-XX:MaxPermSize=768m -J-server -J-Xmx2048m -J-Xms1024m -J-Djruby.reflection=true -J-Djruby.compile.mode=OFF -J-Djruby.debug.fullTrace=true"
+
+[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm" # Load RVM into a shell session *as a function*

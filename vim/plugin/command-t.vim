@@ -1,5 +1,5 @@
 " command-t.vim
-" Copyright 2010-2011 Wincent Colaiuta. All rights reserved.
+" Copyright 2010-2014 Wincent Colaiuta. All rights reserved.
 "
 " Redistribution and use in source and binary forms, with or without
 " modification, are permitted provided that the following conditions are met:
@@ -22,13 +22,14 @@
 " ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 " POSSIBILITY OF SUCH DAMAGE.
 
-if exists("g:command_t_loaded")
+if exists("g:command_t_loaded") || &cp
   finish
 endif
 let g:command_t_loaded = 1
 
 command CommandTBuffer call <SID>CommandTShowBufferFinder()
 command CommandTJump call <SID>CommandTShowJumpFinder()
+command CommandTTag call <SID>CommandTShowTagFinder()
 command -nargs=? -complete=dir CommandT call <SID>CommandTShowFileFinder(<q-args>)
 command CommandTFlush call <SID>CommandTFlush()
 
@@ -71,6 +72,14 @@ function s:CommandTShowJumpFinder()
   endif
 endfunction
 
+function s:CommandTShowTagFinder()
+  if has('ruby')
+    ruby $command_t.show_tag_finder
+  else
+    call s:CommandTRubyWarning()
+  endif
+endfunction
+
 function s:CommandTFlush()
   if has('ruby')
     ruby $command_t.flush
@@ -82,6 +91,10 @@ endfunction
 if !has('ruby')
   finish
 endif
+
+function CommandTListMatches()
+  ruby $command_t.list_matches
+endfunction
 
 function CommandTHandleKey(arg)
   ruby $command_t.handle_key
@@ -109,6 +122,14 @@ endfunction
 
 function CommandTAcceptSelectionVSplit()
   ruby $command_t.accept_selection :command => 'vs'
+endfunction
+
+function CommandTQuickfix()
+  ruby $command_t.quickfix
+endfunction
+
+function CommandTRefresh()
+  ruby $command_t.refresh
 endfunction
 
 function CommandTToggleFocus()
