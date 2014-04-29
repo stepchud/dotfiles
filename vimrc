@@ -113,8 +113,8 @@ set showmatch
 nnoremap <leader><space> :nohl<cr>
 
 " tab jumps to matching bracket
-nnoremap <tab> %
-vnoremap <tab> %
+" nnoremap <tab> %
+" vnoremap <tab> %
 
 " chg shortmess (help :shortmess for details)
 set shortmess=atI

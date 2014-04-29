@@ -37,7 +37,7 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export PS1='[\[\033[0;31m\]\u@\h:\[\033[0;33m\]\W\[\033[1;34m\]$(__git_ps1 " (%s)")\[\033[0m\]]\$ '
-export PATH=~/bin:/usr/local/sbin:$PATH:/usr/local/rvm/bin
+export PATH=~/bin:/usr/local/sbin:$PATH
 
 # setup ruby version manager
 

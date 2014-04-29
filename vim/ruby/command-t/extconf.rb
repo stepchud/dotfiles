@@ -36,6 +36,16 @@ header('ruby.h')
 header('stdlib.h')
 header('string.h')
 
+# optional headers (for CommandT::Watchman::Utils)
+if have_header('fcntl.h') &&
+  have_header('sys/errno.h') &&
+  have_header('sys/socket.h')
+  RbConfig::MAKEFILE_CONFIG['DEFS'] += ' -DWATCHMAN_BUILD'
+
+  have_header('ruby/st.h') # >= 1.9; sets HAVE_RUBY_ST_H
+  have_header('st.h')      # 1.8; sets HAVE_ST_H
+end
+
 # optional
 if RbConfig::CONFIG['THREAD_MODEL'] == 'pthread'
   have_library('pthread', 'pthread_create') # sets HAVE_PTHREAD_H if found
