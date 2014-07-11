@@ -1,5 +1,9 @@
 " mostlyrecommended from http://items.sjbach.com/319/configuring-vim-right
 " no vi compatibility
+
+" ~/.vim/autoload/pathogen.vim
+execute pathogen#infect()
+
 set nocompatible
 
 " prevent some modelines sec exploits
@@ -113,8 +117,8 @@ set showmatch
 nnoremap <leader><space> :nohl<cr>
 
 " tab jumps to matching bracket
-" nnoremap <tab> %
-" vnoremap <tab> %
+nnoremap <tab> %
+vnoremap <tab> %
 
 " chg shortmess (help :shortmess for details)
 set shortmess=atI
@@ -147,3 +151,4 @@ function! CleverTab()
       return "\<C-N>"
 endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
+

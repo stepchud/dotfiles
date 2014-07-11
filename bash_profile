@@ -41,7 +41,6 @@ export PATH=~/bin:/usr/local/sbin:$PATH
 
 # setup ruby version manager
 
-export RUBYLIB=".:test:lib:$RUBYLIB"
 export JRUBY_OPTS="--1.9 -J-XX:PermSize=512m -J-XX:MaxPermSize=768m -J-server -J-Xmx2048m -J-Xms1024m -J-Djruby.reflection=true -J-Djruby.compile.mode=OFF -J-Djruby.debug.fullTrace=true"
 
 [[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm" # Load RVM into a shell session *as a function*
