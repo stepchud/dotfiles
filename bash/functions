@@ -65,7 +65,14 @@ function __localized_to {
 }
 
 function cleanup_undos {
-  find . -name ".*.un~" -exec rm {} +
+  local dir=$1;
+  if [ $# -eq 0 ]
+    then
+      dir='.'
+  fi
+  echo "cleanup vim undos from $dir"
+
+  find $dir -name ".*.un~" -exec rm {} +
 }
 
 function gemdir {
