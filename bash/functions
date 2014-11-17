@@ -1,14 +1,5 @@
-# changing directory to project code
-function c { cd ~/code/$1; }
-
 function hgrep {
   history | grep "$1"
-}
-
-function rgrep {
-  local srch="$1"
-  echo "looking for $srch in ."
-  grep -rn "$srch" .
 }
 
 # find every occurence of the given string in relevant code directories
