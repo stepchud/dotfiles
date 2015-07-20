@@ -25,6 +25,10 @@ fi
 # and should not be shared across environments
 # for settings specific to one system (e.g. mac vs. linux differences)
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
 if [ -e $HOME/localized/ ]; then
   for file in $HOME/localized/*; do source $file; done
   __localized_to
@@ -39,8 +43,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export PS1='[\[\033[0;31m\]\u@\h:\[\033[0;33m\]\W\[\033[1;34m\]$(__git_ps1 " (%s)")\[\033[0m\]]\$ '
 export PATH=~/bin:/usr/local/sbin:$PATH
 
-# setup ruby version manager
+# export JRUBY_OPTS="--1.9 -J-XX:PermSize=512m -J-XX:MaxPermSize=768m -J-server -J-Xmx2048m -J-Xms1024m -J-Djruby.reflection=true -J-Djruby.compile.mode=OFF -J-Djruby.debug.fullTrace=true -J-Djsse.enableSNIExtension=false --debug"
 
-export JRUBY_OPTS="--1.9 -J-XX:PermSize=512m -J-XX:MaxPermSize=768m -J-server -J-Xmx2048m -J-Xms1024m -J-Djruby.reflection=true -J-Djruby.compile.mode=OFF -J-Djruby.debug.fullTrace=true -J-Djsse.enableSNIExtension=false --debug"
-
-[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+source ~/.bash_environment
