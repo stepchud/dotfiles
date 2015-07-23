@@ -14,9 +14,6 @@ Originally from Ryan Bates' git://github.com/ryanb/dotfiles but adapted to my pr
 == Environment
 
 This will run on posix-type system that supports general commands like mv, ln.
-Running `rake install` will also clone a seperate git repo called localized.
-This will allow you to have environment/os specific config alongside these general settings.
-You will be prompted to switch to a system-specific branch in that repo during the install process.
 
 == Features
 

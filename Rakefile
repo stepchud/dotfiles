@@ -1,7 +1,7 @@
 require 'rake'
 require 'erb'
 
-IGNORE_FILES = %w{Rakefile README.rdoc LICENSE localized}
+IGNORE_FILES = %w{Rakefile README.rdoc LICENSE}
 APPEND_FILES = %w{bashrc}
 
 desc "simple test task"
@@ -52,14 +52,6 @@ task :install do
     else
       link_file
     end
-  end
-
-  @file, @link = File.join(install_from,'localized'), File.join(ENV['HOME'], 'localized')
-  if File.exist?(@file)
-    puts "'localized' dir exists! can't get the repo."
-  else
-    `pushd #{install_from} && git clone git://github.com/stepchud/localized.git && popd`
-    link_file unless File.exist?(@link)
   end
 
   puts "Installation complete."
