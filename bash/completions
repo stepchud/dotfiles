@@ -1,7 +1,7 @@
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+if $(which brew > /dev/null) && [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+else echo -n 'no brew; no bash_completion; '
 fi
-source ~/.bash/completion_scripts/git-completion.bash
-source ~/.bash/completion_scripts/git-prompt.sh
-complete -C ~/.bash/completion_scripts/rake_completion -o default rake
-# complete -C ~/.bash/completion_scripts/capistrano_completion -o default cap
+if [ -f ~/.bash/completion_scripts/git-completion.bash ]; then source ~/.bash/completion_scripts/git-completion.bash; fi
+if [ -f ~/.bash/completion_scripts/git-prompt.sh ]; then source ~/.bash/completion_scripts/git-prompt.sh; fi
+if [ -f ~/.bash/completion_scripts/rake_completion ]; then complete -C ~/.bash/completion_scripts/rake_completion -o default rake; fi
