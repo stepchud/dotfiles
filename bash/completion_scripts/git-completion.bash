@@ -1,1 +1,1 @@
-/usr/local/etc/bash_completion.d/git-completion.bash
+/etc/bash_completion.d/git
