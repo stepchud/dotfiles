@@ -24,14 +24,6 @@ if [ -f ~/.bashrc ]; then source ~/.bashrc; fi
 # for settings specific to one system (e.g. mac vs. linux differences)
 if [ -f ~/.bash_environment ]; then source ~/.bash_environment; fi
 
-if [ -e $HOME/localized/ ]; then
-  for file in $HOME/localized/*; do source $file; done
-  __localized_to
-  echo -n "localized to $LOCAL_ENV; "
-else
-  echo -n 'no localizations; '
-fi
-
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
