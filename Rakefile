@@ -55,7 +55,6 @@ task :install do
   end
 
   puts "Installation complete."
-  puts "Now you can cd to #{@file} and checkout the branch corresponding to your machine env."
 end
 
 def backup_file
