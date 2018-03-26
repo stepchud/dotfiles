@@ -4,9 +4,6 @@
 [alias]
 	co = checkout
   cp = cherry-pick
-  svnpull = svn rebase
-  up = pull
-  svnpush = svn dcommit
   # common mis-spellings
   dif = diff
   lg = log
@@ -30,3 +27,7 @@
 	token = <%= print("GitHub API Token: "); STDOUT.flush; STDIN.gets.chomp %>
 [pretty]
   githubmine = %h by %an about %cr%n%B
+[push]
+  default = current
+[rerere]
+  enabled = true
