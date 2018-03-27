@@ -5,8 +5,8 @@ export HISTSIZE=100000
 export HISTIGNORE="&:[ ]*:exit"
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export PATH=~/bin:/usr/local/sbin:$PATH
-if [ -f ~/.rbenv/bin ]; then export PATH="~/.rbenv/bin:$PATH"; fi
+# add sbin (rabbitmq) to path
+export PATH="~/bin:/usr/local/sbin:$PATH"
 
 stty stop ""
 
@@ -32,11 +32,8 @@ export PS1='[\[\033[0;31m\]\u@\h:\[\033[0;33m\]\W\[\033[1;34m\]$(__git_ps1 " (%s
 # export JRUBY_OPTS="--1.9 -J-XX:PermSize=512m -J-XX:MaxPermSize=768m -J-server -J-Xmx2048m -J-Xms1024m -J-Djruby.reflection=true -J-Djruby.compile.mode=OFF -J-Djruby.debug.fullTrace=true -J-Djsse.enableSNIExtension=false --debug"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-echo
 
 # configure nvm
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+. $(brew --prefix nvm)/nvm.sh
 
-# add yarn to path
-export PATH="$PATH:`yarn global bin`"

@@ -64,7 +64,9 @@ nnoremap <C-y> 3<C-y>
 
 " limited line-numbers
 set ruler
-set relativenumber
+
+" line nos
+set number
 
 " Intuitive backspacing in insert mode
 set backspace=indent,eol,start
@@ -82,9 +84,6 @@ set showmode
 
 " always show status line
 set laststatus=2
-
-" relative line nos?
-set relativenumber
 
 " keep an undofile across sessions
 set undofile
@@ -107,6 +106,16 @@ endif
   " vim starts too slow in jruby
 if !empty(matchstr($MY_RUBY_HOME, 'jruby'))
   let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/rubysite_ruby/*'),"\n"),',')
+endif
+
+" use ag instead of ack
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+  cnoreabbrev ag Ack
+  cnoreabbrev ack Ack
+  cnoreabbrev aG Ack
+  cnoreabbrev Ag Ack
+  cnoreabbrev AG Ack
 endif
 
 " highlight search terms, matching brackets
