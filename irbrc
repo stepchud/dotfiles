@@ -2,6 +2,7 @@
 
 # enable readline for jruby
 IRB.conf[:USE_READLINE] = true
+IRB.conf[:SAVE_HISTORY] = 1000
 
 # load up and initialize Wirble with some nice defaults
 # begin

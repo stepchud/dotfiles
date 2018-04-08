@@ -2,28 +2,11 @@ function hgrep {
   history | grep "$1"
 }
 
-# find every occurence of the given string in relevant code directories
-function cgrep {
-  local usage="usage: cgrep [grep options] <string_to_grep_for> (surrounded by quotes for multi-word match)"
-  if [ $# -lt 1 -o $# -gt 2 ]; then
-    echo "$usage" && return 1
-  fi
-
-  local grep_opts="-Ern"
-  if [ $# -eq 2 ]; then
-    local grep_opts="$grep_opts $1"
-    local srch="$2"
-  else
-    local srch="$1"
-  fi
-  if [ -z "$srch" ]; then
-    echo "$usage" && return 1
-  else
-    echo "looking for '$srch' with grep options '$grep_opts'..."
-    (find . -type dir -depth 1 -not -name 'public' -and -not -name 'tmp' -and -not -name 'temp' -and -not -name '*data' -and -not -name 'log' -and -not -name '.git' -exec grep $grep_opts "$srch" {} \; ;
-    find ./public -type dir -depth 1 -not -name 'packages' -exec grep $grep_opts "$srch" {} \;)
-  fi
+function dash {
+  echo "dash://$1 $2 $3"
+  open "dash://$1 $2 $3"
 }
+
 
 # find differences within a file giving start and end lines for both sections
 function diff_sections {
@@ -34,17 +17,6 @@ function diff_sections {
     local tempfile=`mktemp -t $fname`
     head -$3 $1 | tail +$2 > $tempfile && head -$5 $1 | tail +$4 | diff -u $tempfile -
     rm $tempfile
-  fi
-}
-
-# kill the server rake task more easily
-function killserver {
-  ps ux | grep server:start | grep -v grep | awk '{print $2}' | xargs kill
-  local status=$?
-  if [ $status -ne 0 ]
-  then
-    echo SIGTERM failed to kill, resorting to SIGKILL
-    ps ux | grep server:start | grep -v grep | awk '{print $2}' | xargs kill -9
   fi
 }
 
@@ -59,12 +31,36 @@ function cleanup_undos {
   find $dir -name ".*.un~" -exec rm {} +
 }
 
-function gemdir {
-  if [[ -z "$1" ]] ; then
-    echo "gemdir expects a parameter, which should be a valid RVM Ruby selector"
-  else
-    rvm "$1"
-    cd $(rvm gemdir)
-    pwd
-  fi
-}
+# # find every occurence of the given string in relevant code directories
+# function cgrep {
+#   local usage="usage: cgrep [grep options] <string_to_grep_for> (surrounded by quotes for multi-word match)"
+#   if [ $# -lt 1 -o $# -gt 2 ]; then
+#     echo "$usage" && return 1
+#   fi
+#
+#   local grep_opts="-Ern"
+#   if [ $# -eq 2 ]; then
+#     local grep_opts="$grep_opts $1"
+#     local srch="$2"
+#   else
+#     local srch="$1"
+#   fi
+#   if [ -z "$srch" ]; then
+#     echo "$usage" && return 1
+#   else
+#     echo "looking for '$srch' with grep options '$grep_opts'..."
+#     (find . -type dir -depth 1 -not -name 'public' -and -not -name 'tmp' -and -not -name 'temp' -and -not -name '*data' -and -not -name 'log' -and -not -name '.git' -exec grep $grep_opts "$srch" {} \\; ;
+#     find ./public -type dir -depth 1 -not -name 'packages' -exec grep $grep_opts "$srch" {} \\;)
+#   fi
+# }
+
+# kill the server rake task more easily
+# function killserver {
+#   ps ux | grep server:start | grep -v grep | awk '{print $2}' | xargs kill
+#   local status=$?
+#   if [ $status -ne 0 ]
+#   then
+#     echo SIGTERM failed to kill, resorting to SIGKILL
+#     ps ux | grep server:start | grep -v grep | awk '{print $2}' | xargs kill -9
+#   fi
+# }

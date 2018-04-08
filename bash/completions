@@ -1,22 +1,12 @@
 if $(which brew > /dev/null); then
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
-  else echo -n 'no bash_completion; '
+  else echo 'no bash_completion'
   fi
-else echo -n 'no brew; '
-fi
-
-if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
-  source /usr/local/git/contrib/completion/git-completion.bash;
-else echo -n 'no git-completion in /usr/local/git/contrib/completion/git-completion.bash;'
-fi
-
-if [ -f /usr/local/git/contrib/completion/git-prompt.sh ]; then
-  source /usr/local/git/contrib/completion/git-prompt.sh;
-else echo -n 'no git-prompt.sh in /usr/local/git/contrib/completion/git-prompt.sh;'
+else echo 'no homebrew'
 fi
 
 if [ -f ~/.bash/completion_scripts/rake_completion ]; then
   complete -C ~/.bash/completion_scripts/rake_completion -o default rake;
-else echo -n 'no rake_completion in ~/.bash/completion_scripts/rake_completion;'
+else echo 'no rake_completion in ~/.bash/completion_scripts/rake_completion;'
 fi
