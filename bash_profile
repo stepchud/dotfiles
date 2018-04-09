@@ -19,15 +19,6 @@ source ~/.bash/ps1
 # .bashrc is for non-interactive login ENVs
 if [ -f ~/.bashrc ]; then source ~/.bashrc; fi
 
-# extra config that shouldn't be in dotfiles.git here...
-if [ -d ~/.bash/local ]; then
-  for file in ~/.bash/local/*; do
-    source "$file";
-  done
-else
-  echo "no local";
-fi
-
 # Local, non-shared configurations
 # add configuration that is specific to this machine/environmnet
 # and should not be shared across environments
@@ -44,6 +35,12 @@ if which rbenv > /dev/null; then
   eval "$(rbenv init -)";
 else
   echo 'no rbenv'
+fi
+
+if [ -f /usr/local/etc/bash_completion ]; then
+  . /usr/local/etc/bash_completion;
+else
+  echo 'no bash_completion'
 fi
 
 # configure nvm
