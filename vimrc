@@ -145,7 +145,8 @@ hi Pmenu ctermbg=13 guibg=Magenta
 
 " Command-T mappings
 let g:CommandTMaxHeight = 30
-let g:CommandTMaxFiles = 20000
+let g:CommandTMaxFiles = 40000
+let g:CommandTFileScanner = 'git'
 
 map <leader>f :CommandT<CR>
 map <leader>b :CommandTBuffer<CR>
