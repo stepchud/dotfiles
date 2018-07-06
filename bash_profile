@@ -37,22 +37,10 @@ else
   echo 'no rbenv'
 fi
 
-if [ -f /usr/local/etc/bash_completion ]; then
-  . /usr/local/etc/bash_completion;
-else
-  echo 'no bash_completion'
-fi
-
 # configure nvm
 if [ -d "$HOME/.nvm" ]; then
-  # echo nvm init
   export NVM_DIR="$HOME/.nvm"
   . $(brew --prefix nvm)/nvm.sh
-  if [ -s "$NVM_DIR/bash_completion" ]; then
-    # echo nvm bash_completion
-    . "$NVM_DIR/bash_completion"; # load nvm bash_completion
-  else echo 'no nvm completion'
-  fi
 else
   echo 'no nvm'
 fi
